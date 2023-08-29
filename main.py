@@ -17,14 +17,19 @@ class MainNamespace:
     @classmethod
     def main(cls):
         request_results = {}
+        active_config_number = debug_point.active_config_number
+        active_namespace = getattr(
+            RequestSectionsCustomNamespace,
+            f'Config{active_config_number}'
+        )
         jira_requester = Requester(
-            RequestSectionsCustomNamespace.ACTIVE_JIRA_CREDENTIAL
+            active_namespace.ACTIVE_JIRA_CREDENTIAL
         )
         structure_for_intersections = defaultdict(lambda: [])
         for (
             request_name,
             request_parameters,
-        ) in RequestSectionsCustomNamespace.REQUESTS.items():
+        ) in active_namespace.REQUESTS.items():
             # Request results.
             json_response = jira_requester.get_response_as_json(
                 request_parameters

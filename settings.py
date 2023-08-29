@@ -1,6 +1,7 @@
 """
 Credentials for different users.
 """
+import os
 from jira_query_types import JiraCredentials
 
 

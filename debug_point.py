@@ -4,7 +4,7 @@ A place to get results mentioned in requestSectionsCustomNamespace.
 Use glom-syntax to specify additional selections in SUBMAPs.
 """
 from jira_query_types import JiraRequestParameters, ALL_FIELDS
-from configfuncs import ApplyConfig
+from splitconfigs import apply_config
 from settings import *
 
 
