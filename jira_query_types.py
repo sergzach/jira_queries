@@ -13,6 +13,7 @@ class JiraCredentials(NamedTuple):
 
 
 class JiraRequestParameters(NamedTuple):
+    title: str
     path: str
     fields: str = None
     jql: Optional[str] = None

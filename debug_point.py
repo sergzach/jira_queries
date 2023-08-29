@@ -15,10 +15,14 @@ class RequestSectionsCustomNamespace:
     class Config1:
         REQUESTS = dict(
             TASKS=JiraRequestParameters(
+                title='Search tasks, several tasks matches to one account',
                 path='/rest/api/2/search',
                 fields=ALL_FIELDS,
-                jql='issuetype = "task" and (project = "Time tracker")',
-                max_results=5000,
+                jql=(
+                    'issuetype = "task" and '
+                    '(project = "Time tracker" OR project="Worksheets")'
+                ),
+                max_results=1000,
                 SUBMAPS=dict(
                     SUMMARY='issues.*.fields.summary',
                     PROJECT_KEY='issues.*.fields.project.key',
@@ -29,10 +33,11 @@ class RequestSectionsCustomNamespace:
                 ),
             ),
             ACCOUNTS=JiraRequestParameters(
+                title='Search accounts',
                 path='/rest/tempo-accounts/1/account',
                 fields=ALL_FIELDS,
                 jql=None,
-                max_results=5000,
+                max_results=1000,
                 SUBMAPS=dict(ACCOUNT_NAME='*.name'),
             ),
         )
